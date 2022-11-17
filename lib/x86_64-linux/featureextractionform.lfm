@@ -1,0 +1,63 @@
+object Form1: TForm1
+  Left = 435
+  Height = 577
+  Top = 169
+  Width = 841
+  Caption = 'Form1'
+  ClientHeight = 577
+  ClientWidth = 841
+  LCLVersion = '2.2.0.1'
+  object btnLoad1: TButton
+    Left = 104
+    Height = 25
+    Top = 40
+    Width = 75
+    Caption = 'Load 1'
+    TabOrder = 0
+  end
+  object btnLoad2: TButton
+    Left = 412
+    Height = 25
+    Top = 40
+    Width = 75
+    Caption = 'Load 2'
+    TabOrder = 1
+  end
+  object imgSrc1: TImage
+    Left = 95
+    Height = 106
+    Top = 88
+    Width = 106
+    AutoSize = True
+  end
+  object imgSrc2: TImage
+    Left = 400
+    Height = 106
+    Top = 88
+    Width = 104
+    AutoSize = True
+  end
+  object ListBox1: TListBox
+    Left = 96
+    Height = 80
+    Top = 264
+    Width = 100
+    ItemHeight = 0
+    TabOrder = 2
+  end
+  object ListBox2: TListBox
+    Left = 404
+    Height = 80
+    Top = 264
+    Width = 100
+    ItemHeight = 0
+    TabOrder = 3
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 24
+    Top = 8
+  end
+  object OpenDialog2: TOpenDialog
+    Left = 536
+  end
+end
