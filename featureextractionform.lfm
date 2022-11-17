@@ -37,24 +37,20 @@ object Form1: TForm1
     Width = 104
     AutoSize = True
   end
-  object memo1: TMemo
-    Left = 72
-    Height = 90
-    Top = 256
-    Width = 150
-    Lines.Strings = (
-      'memo1'
-    )
+  object ListBox1: TListBox
+    Left = 96
+    Height = 80
+    Top = 264
+    Width = 100
+    ItemHeight = 0
     TabOrder = 2
   end
-  object memo2: TMemo
-    Left = 376
-    Height = 90
-    Top = 256
-    Width = 150
-    Lines.Strings = (
-      'memo2'
-    )
+  object ListBox2: TListBox
+    Left = 404
+    Height = 80
+    Top = 264
+    Width = 100
+    ItemHeight = 0
     TabOrder = 3
   end
   object OpenDialog1: TOpenDialog

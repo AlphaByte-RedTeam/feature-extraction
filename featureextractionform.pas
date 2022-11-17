@@ -16,8 +16,8 @@ type
     btnLoad2: TButton;
     imgSrc2: TImage;
     imgSrc1: TImage;
-    memo1: TMemo;
-    memo2: TMemo;
+    ListBox1: TListBox;
+    ListBox2: TListBox;
     OpenDialog1: TOpenDialog;
     OpenDialog2: TOpenDialog;
   private
