@@ -15,6 +15,7 @@ type
   TForm1 = class(TForm)
     btnLoad1: TButton;
     btnLoad2: TButton;
+    btnEktraksi: TButton;
     imgSrc2: TImage;
     imgSrc1: TImage;
     ListBox1: TListBox;

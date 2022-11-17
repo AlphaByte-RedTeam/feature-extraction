@@ -20,19 +20,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-<<<<<<< Updated upstream
-        <CursorPos X="134" Y="14"/>
-        <UsageCount Value="20"/>
-=======
-        <TopLine Value="72"/>
-        <CursorPos X="5" Y="105"/>
+        <TopLine Value="33"/>
+        <CursorPos X="28" Y="33"/>
         <UsageCount Value="21"/>
->>>>>>> Stashed changes
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="11">
+    <JumpHistory HistoryIndex="13">
       <Position>
         <Filename Value="featureextractionform.pas"/>
       </Position>
@@ -79,6 +74,14 @@
       <Position>
         <Filename Value="featureextractionform.pas"/>
         <Caret Line="103" Column="5" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="37" Column="37" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="32" Column="28" TopLine="72"/>
       </Position>
     </JumpHistory>
     <RunParams>

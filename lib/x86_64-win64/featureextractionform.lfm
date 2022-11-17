@@ -55,6 +55,14 @@ object Form1: TForm1
     ItemHeight = 0
     TabOrder = 3
   end
+  object btnEktraksi: TButton
+    Left = 664
+    Height = 25
+    Top = 216
+    Width = 96
+    Caption = 'Ekstraksi Fitur'
+    TabOrder = 4
+  end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 26
     Top = 25
