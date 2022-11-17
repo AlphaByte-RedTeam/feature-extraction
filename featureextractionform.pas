@@ -18,6 +18,8 @@ type
     imgSrc1: TImage;
     memo1: TMemo;
     memo2: TMemo;
+    OpenDialog1: TOpenDialog;
+    OpenDialog2: TOpenDialog;
   private
 
   public

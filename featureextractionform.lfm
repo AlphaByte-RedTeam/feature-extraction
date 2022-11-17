@@ -57,4 +57,11 @@ object Form1: TForm1
     )
     TabOrder = 3
   end
+  object OpenDialog1: TOpenDialog
+    Left = 24
+    Top = 8
+  end
+  object OpenDialog2: TOpenDialog
+    Left = 536
+  end
 end
