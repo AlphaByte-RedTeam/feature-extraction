@@ -5,10 +5,17 @@ unit featureextractionform;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls;
 
 type
+
+  { TForm1 }
+
   TForm1 = class(TForm)
+    btnLoad1: TButton;
+    btnLoad2: TButton;
+    imgSrc2: TImage;
+    imgSrc1: TImage;
   private
 
   public
