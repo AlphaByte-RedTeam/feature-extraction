@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 198
+  Left = 225
   Height = 577
-  Top = 171
+  Top = 122
   Width = 841
   Caption = 'Form1'
   ClientHeight = 577
@@ -41,7 +41,7 @@ object Form1: TForm1
     Left = 96
     Height = 80
     Top = 440
-    Width = 100
+    Width = 105
     ItemHeight = 0
     TabOrder = 2
   end
@@ -59,6 +59,7 @@ object Form1: TForm1
     Top = 216
     Width = 96
     Caption = 'Ekstraksi Fitur'
+    OnClick = btnEktraksiClick
     TabOrder = 4
   end
   object btnScan1: TButton

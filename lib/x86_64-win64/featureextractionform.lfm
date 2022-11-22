@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 198
+  Left = 268
   Height = 577
-  Top = 171
+  Top = 116
   Width = 841
   Caption = 'Form1'
   ClientHeight = 577
@@ -41,7 +41,7 @@ object Form1: TForm1
     Left = 96
     Height = 80
     Top = 440
-    Width = 100
+    Width = 105
     ItemHeight = 0
     TabOrder = 2
   end
@@ -93,6 +93,20 @@ object Form1: TForm1
     Top = 280
     Width = 90
     AutoSize = True
+  end
+  object Label1: TLabel
+    Left = 111
+    Height = 15
+    Top = 416
+    Width = 76
+    Caption = 'Distribusi Fitur'
+  end
+  object Label2: TLabel
+    Left = 416
+    Height = 15
+    Top = 416
+    Width = 76
+    Caption = 'Distribusi Fitur'
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 26
