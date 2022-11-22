@@ -16,6 +16,8 @@ type
     btnLoad1: TButton;
     btnLoad2: TButton;
     btnEktraksi: TButton;
+    btnScan1: TButton;
+    btnScan2: TButton;
     imgSrc2: TImage;
     imgSrc1: TImage;
     ListBox1: TListBox;
