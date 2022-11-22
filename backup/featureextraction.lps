@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="featureextractionform.pas"/>
@@ -20,14 +20,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="33"/>
-        <CursorPos X="28" Y="33"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="77"/>
+        <CursorPos X="11" Y="86"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="13">
+    <JumpHistory HistoryIndex="22">
       <Position>
         <Filename Value="featureextractionform.pas"/>
       </Position>
@@ -81,7 +81,43 @@
       </Position>
       <Position>
         <Filename Value="featureextractionform.pas"/>
-        <Caret Line="32" Column="28" TopLine="72"/>
+        <Caret Line="33" Column="28" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="34" Column="28" TopLine="34"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="36" Column="28" TopLine="36"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="112" Column="8" TopLine="99"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="170" Column="25" TopLine="145"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="141" Column="32" TopLine="123"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="132" Column="14" TopLine="109"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="187" Column="11" TopLine="159"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="144" Column="30" TopLine="140"/>
+      </Position>
+      <Position>
+        <Filename Value="featureextractionform.pas"/>
+        <Caret Line="175" Column="32" TopLine="148"/>
       </Position>
     </JumpHistory>
     <RunParams>

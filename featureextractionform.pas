@@ -26,6 +26,7 @@ type
     OpenPictureDialog2: TOpenPictureDialog;
     procedure btnLoad1Click(Sender: TObject);
     procedure btnLoad2Click(Sender: TObject);
+    procedure btnScan1Click(Sender: TObject);
   private
 
   public
@@ -103,6 +104,88 @@ begin
         BitmapBiner2[i,j] := 0;
     end;
   end;
+end;
+
+procedure TForm1.btnScan1Click(Sender: TObject);
+var
+  x, y : integer;
+  tepi_atas_x, tepi_atas_y : integer;
+  tepi_bawah_x, tepi_bawah_y : integer;
+  tepi_kiri_x, tepi_kiri_y : integer;
+  tepi_kanan_x, tepi_kanan_y : integer;
+
+begin
+// tepi atas
+  for y := 0 to imgSrc1.Height-1 do
+  begin
+    for x := 0 to imgSrc1.Width-1 do
+    begin
+      if(BitmapBiner1[x,y] = 0) then
+      begin
+        tepi_atas_x  := x;
+        tepi_atas_y := y;
+        break;
+      end;
+    end;
+     if(BitmapBiner1[x,y] = 0) then
+     begin
+       break;
+     end;
+  end;
+
+// tepi bawah
+    for y := imgSrc1.Height-1 to 0  do
+    begin
+      for x := 0 to imgSrc1.Width-1 do
+      begin
+        if(BitmapBiner1[x,y] = 0) then
+        begin
+          tepi_bawah_x := x;
+          tepi_bawah_y := y;
+          break;
+        end;
+      end;
+      if(BitmapBiner1[x,y] = 0) then
+      begin
+        break;
+      end;
+    end;
+
+// tepi kiri
+    for x := 0 to imgSrc1.Width-1  do
+        begin
+          for y := 0 to imgSrc1.Height-1 do
+          begin
+            if(BitmapBiner1[x,y] = 0) then
+            begin
+              tepi_kiri_x := x;
+              tepi_kiri_y := y;
+              break;
+            end;
+          end;
+          if(BitmapBiner1[x,y] = 0) then
+          begin
+            break;
+          end;
+        end;
+
+// tepi kanan
+       for x := imgSrc1.Width-1 to 0 do
+        begin
+          for y := 0 to imgSrc1.Height-1 do
+          begin
+            if(BitmapBiner1[x,y] = 0) then
+            begin
+              tepi_kanan_x := x;
+              tepi_kanan_y := y;
+              break;
+            end;
+          end;
+          if(BitmapBiner1[x,y] = 0) then
+          begin
+            break;
+          end;
+        end;
 end;
 
 end.
