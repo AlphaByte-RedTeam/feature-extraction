@@ -22,6 +22,8 @@ type
     imgSrc2_cut: TImage;
     imgSrc2: TImage;
     imgSrc1: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
     ListBox1: TListBox;
     ListBox2: TListBox;
     OpenPictureDialog1: TOpenPictureDialog;
@@ -57,8 +59,8 @@ var
   BitmapBiner1_cut: array[0..1000, 0..1000] of integer;
   BitmapBiner2_cut: array[0..1000, 0..1000] of integer;
 
-  feature : array[1..5, 1..5] of integer;
-
+  feature1 : array[1..5, 1..5] of integer;
+  feature2 : array[1..5, 1..5] of integer;
 procedure TForm1.btnLoad1Click(Sender: TObject);
 var
   i, j, R, G, B, gray: integer;
@@ -92,56 +94,115 @@ procedure TForm1.btnEktraksiClick(Sender: TObject);
 var
   x, y : integer;
   i, j : integer;
-  feature_number : integer;
-  cell_width, cell_height : integer;
-  left_most_cell, right_most_cell : integer;
-  top_most_cell, bottom_most_cell : integer;
-  total_cells_in_1_feature : integer;
+
+  //variabel untuk proses ekstraksi gambar pertama
+  feature_number1 : integer;
+  cell_width1, cell_height1 : integer;
+  left_most_cell_1, right_most_cell_1 : integer;
+  top_most_cell_1, bottom_most_cell_1 : integer;
+  total_cells_in_1_feature1 : integer;
+
+  //variabel untuk proses ekstraksi gambar kedua (cuma beda angka 1 dan 2)
+  feature_number2 : integer;
+  cell_width2, cell_height2 : integer;
+  left_most_cell_2, right_most_cell_2 : integer;
+  top_most_cell_2, bottom_most_cell_2 : integer;
+  total_cells_in_2_feature1 : integer;
 
 begin
+// ***************************GAMBAR PERTAMA************************************
+
   // menentukan lebar dan tinggi setiap cell setelah TImage dibagi menjadi matriks 5x5
-  cell_width  := ceil(imgSrc1_cut.width / 5) - 1;
-  cell_height := ceil(imgSrc1_cut.Height / 5) - 1;
+  cell_width1  := ceil(imgSrc1_cut.width / 5) - 1;
+  cell_height1 := ceil(imgSrc1_cut.Height / 5) - 1;
 
   // menentukan posisi paling kiri dan posisi paling kanan pixel dalam suatu daerah fitur
-  left_most_cell  := 0;
-  right_most_cell := 0;
+  left_most_cell_1  := 0;
+  right_most_cell_1 := 0;
 
   // menentukan posisi paling atas dan posisi paling bawah dalam suatu daerahfitur
-  top_most_cell    := 0;
-  bottom_most_cell := 0;
+  top_most_cell_1   := 0;
+  bottom_most_cell_1 := 0;
 
   for j := 1 to 5 do
   begin
-    left_most_cell  := 0;
-    right_most_cell := 0;
+    left_most_cell_1  := 0;
+    right_most_cell_1 := 0;
     for i := 1 to 5 do
     begin
-      for y := (top_most_cell) to (cell_height + bottom_most_cell) do
+      for y := (top_most_cell_1) to (cell_height1 + bottom_most_cell_1) do
       begin
-        for x := (left_most_cell) to (cell_width + right_most_cell) do
+        for x := (left_most_cell_1) to (cell_width1 + right_most_cell_1) do
         begin
           if(BitmapBiner1_cut[x,y] = 0) then
-            feature[i,j] += 1
+            feature1[i,j] += 1
         end;
       end;
-      left_most_cell  += cell_width;
-      right_most_cell += cell_width;
+      left_most_cell_1  += cell_width1;
+      right_most_cell_1 += cell_width1;
     end;
-    top_most_cell    += cell_height;
-    bottom_most_cell += cell_height;
+    top_most_cell_1    += cell_height1;
+    bottom_most_cell_1 += cell_height1;
   end;
 
-  feature_number += 1;
-  total_cells_in_1_feature := (cell_width + 1) * (cell_height + 1);
+  feature_number1 += 1;
+  total_cells_in_1_feature1 := (cell_width1 + 1) * (cell_height1 + 1);
   for y := 1 to 5 do
   begin
     for x := 1 to 5 do
     begin
-      ListBox1.Items.Add('Fitur ' + IntToStr(feature_number) + ' : ' + IntToStr(round((feature[x,y] /total_cells_in_1_feature)*100)) + '%');
-      feature_number += 1;
+      ListBox1.Items.Add('Fitur ' + IntToStr(feature_number1) + ' : ' + IntToStr(round((feature1[x,y] /total_cells_in_1_feature1)*100)) + '%');
+      feature_number1 += 1;
     end;
-end;
+  end;
+
+  //-----------------------------------------------------------------------------------------------------------------------------------------------//
+
+  // ********************GAMBAR KEDUA*******************************************
+
+    // menentukan lebar dan tinggi setiap cell setelah TImage dibagi menjadi matriks 5x5
+    cell_width2  := ceil(imgSrc2_cut.width / 5) - 1;
+    cell_height2 := ceil(imgSrc2_cut.Height / 5) - 1;
+
+    // menentukan posisi paling kiri dan posisi paling kanan pixel dalam suatu daerah fitur
+    left_most_cell_2  := 0;
+    right_most_cell_2 := 0;
+
+    // menentukan posisi paling atas dan posisi paling bawah dalam suatu daerahfitur
+    top_most_cell_2   := 0;
+    bottom_most_cell_2 := 0;
+
+    for j := 1 to 5 do
+    begin
+      left_most_cell_2  := 0;
+      right_most_cell_2 := 0;
+      for i := 1 to 5 do
+      begin
+        for y := (top_most_cell_2) to (cell_height2 + bottom_most_cell_2) do
+        begin
+          for x := (left_most_cell_2) to (cell_width2 + right_most_cell_2) do
+          begin
+            if(BitmapBiner2_cut[x,y] = 0) then
+              feature2[i,j] += 1
+          end;
+        end;
+        left_most_cell_2  += cell_width2;
+        right_most_cell_2 += cell_width2;
+      end;
+      top_most_cell_2    += cell_height2;
+      bottom_most_cell_2 += cell_height2;
+    end;
+
+    feature_number2 += 1;
+    total_cells_in_1_feature2 := (cell_width2 + 1) * (cell_height2 + 1);
+    for y := 1 to 5 do
+    begin
+      for x := 1 to 5 do
+      begin
+        ListBox2.Items.Add('Fitur ' + IntToStr(feature_number2) + ' : ' + IntToStr(round((feature2[x,y] /total_cells_in_1_feature2)*100)) + '%');
+        feature_number2 += 1;
+      end;
+    end;
 end;
 
 procedure TForm1.btnLoad2Click(Sender: TObject);
