@@ -18,6 +18,8 @@ type
     btnEktraksi: TButton;
     btnScan1: TButton;
     btnScan2: TButton;
+    imgSrc1_cut: TImage;
+    imgSrc2_cut: TImage;
     imgSrc2: TImage;
     imgSrc1: TImage;
     ListBox1: TListBox;
@@ -27,6 +29,7 @@ type
     procedure btnLoad1Click(Sender: TObject);
     procedure btnLoad2Click(Sender: TObject);
     procedure btnScan1Click(Sender: TObject);
+    procedure btnScan2Click(Sender: TObject);
   private
 
   public
@@ -47,6 +50,9 @@ uses
 var
    bitmapR1, bitmapG1, bitmapB1, BitmapGray1, BitmapBiner1 : array[0..1000, 0..1000] of integer;
    bitmapR2, bitmapG2, bitmapB2, BitmapGray2, BitmapBiner2 : array[0..1000, 0..1000] of integer;
+
+   BitmapBiner1_cut : array[0..1000, 0..1000] of integer;
+   BitmapBiner2_cut : array[0..1000, 0..1000] of integer;
 
 procedure TForm1.btnLoad1Click(Sender: TObject);
 var
@@ -109,10 +115,11 @@ end;
 procedure TForm1.btnScan1Click(Sender: TObject);
 var
   x, y : integer;
-  tepi_atas_x, tepi_atas_y : integer;
-  tepi_bawah_x, tepi_bawah_y : integer;
-  tepi_kiri_x, tepi_kiri_y : integer;
-  tepi_kanan_x, tepi_kanan_y : integer;
+  i, j : integer;
+  tepi_atas_y : integer;
+  tepi_bawah_y : integer;
+  tepi_kiri_x: integer;
+  tepi_kanan_x : integer;
 
 begin
 // tepi atas
@@ -122,7 +129,6 @@ begin
     begin
       if(BitmapBiner1[x,y] = 0) then
       begin
-        tepi_atas_x  := x;
         tepi_atas_y := y;
         break;
       end;
@@ -134,13 +140,12 @@ begin
   end;
 
 // tepi bawah
-    for y := imgSrc1.Height-1 to 0  do
+    for y := imgSrc1.Height-1 downto 0  do
     begin
       for x := 0 to imgSrc1.Width-1 do
       begin
         if(BitmapBiner1[x,y] = 0) then
         begin
-          tepi_bawah_x := x;
           tepi_bawah_y := y;
           break;
         end;
@@ -159,7 +164,6 @@ begin
             if(BitmapBiner1[x,y] = 0) then
             begin
               tepi_kiri_x := x;
-              tepi_kiri_y := y;
               break;
             end;
           end;
@@ -170,14 +174,13 @@ begin
         end;
 
 // tepi kanan
-       for x := imgSrc1.Width-1 to 0 do
+       for x := imgSrc1.Width-1 downto 0 do
         begin
           for y := 0 to imgSrc1.Height-1 do
           begin
             if(BitmapBiner1[x,y] = 0) then
             begin
               tepi_kanan_x := x;
-              tepi_kanan_y := y;
               break;
             end;
           end;
@@ -186,6 +189,128 @@ begin
             break;
           end;
         end;
+
+       for j := tepi_atas_y to  tepi_bawah_y do
+       begin
+         for i := tepi_kiri_x to tepi_kanan_x do
+         begin
+           BitmapBiner1_cut[i-tepi_kiri_x, j-tepi_atas_y] := BitmapBiner1[i,j];
+         end;
+       end;
+
+       imgSrc1_cut.Width  := tepi_kanan_x - tepi_kiri_x;
+       imgSrc1_cut.Height := tepi_bawah_y - tepi_atas_y;
+
+       for y := 0 to (tepi_bawah_y - tepi_atas_y) do
+       begin
+         for x := 0 to  (tepi_kanan_x - tepi_kiri_x) do
+         begin
+           if(BitmapBiner1_cut[x,y] = 0) then
+              imgSrc1_cut.Canvas.Pixels[x,y] := RGB(0,0,0)
+           else
+              imgSrc1_cut.Canvas.Pixels[x,y] := RGB(255,255,255);
+         end;
+       end;
 end;
 
+procedure TForm1.btnScan2Click(Sender: TObject);
+var
+  x, y : integer;
+  i, j : integer;
+  tepi_atas_y : integer;
+  tepi_bawah_y : integer;
+  tepi_kiri_x: integer;
+  tepi_kanan_x : integer;
+
+begin
+// tepi atas
+  for y := 0 to imgSrc2.Height-1 do
+  begin
+    for x := 0 to imgSrc2.Width-1 do
+    begin
+      if(BitmapBiner2[x,y] = 0) then
+      begin
+        tepi_atas_y := y;
+        break;
+      end;
+    end;
+     if(BitmapBiner2[x,y] = 0) then
+     begin
+       break;
+     end;
+  end;
+
+// tepi bawah
+    for y := imgSrc2.Height-1 downto 0  do
+    begin
+      for x := 0 to imgSrc2.Width-1 do
+      begin
+        if(BitmapBiner2[x,y] = 0) then
+        begin
+          tepi_bawah_y := y;
+          break;
+        end;
+      end;
+      if(BitmapBiner2[x,y] = 0) then
+      begin
+        break;
+      end;
+    end;
+
+// tepi kiri
+    for x := 0 to imgSrc2.Width-1  do
+        begin
+          for y := 0 to imgSrc2.Height-1 do
+          begin
+            if(BitmapBiner2[x,y] = 0) then
+            begin
+              tepi_kiri_x := x;
+              break;
+            end;
+          end;
+          if(BitmapBiner2[x,y] = 0) then
+          begin
+            break;
+          end;
+        end;
+
+// tepi kanan
+       for x := imgSrc2.Width-1 downto 0 do
+        begin
+          for y := 0 to imgSrc2.Height-1 do
+          begin
+            if(BitmapBiner2[x,y] = 0) then
+            begin
+              tepi_kanan_x := x;
+              break;
+            end;
+          end;
+          if(BitmapBiner2[x,y] = 0) then
+          begin
+            break;
+          end;
+        end;
+
+       for j := tepi_atas_y to  tepi_bawah_y do
+       begin
+         for i := tepi_kiri_x to tepi_kanan_x do
+         begin
+           BitmapBiner2_cut[i-tepi_kiri_x, j-tepi_atas_y] := BitmapBiner2[i,j];
+         end;
+       end;
+
+       imgSrc2_cut.Width  := tepi_kanan_x - tepi_kiri_x;
+       imgSrc2_cut.Height := tepi_bawah_y - tepi_atas_y;
+
+       for y := 0 to (tepi_bawah_y - tepi_atas_y) do
+       begin
+         for x := 0 to  (tepi_kanan_x - tepi_kiri_x) do
+         begin
+           if(BitmapBiner2_cut[x,y] = 0) then
+              imgSrc2_cut.Canvas.Pixels[x,y] := RGB(0,0,0)
+           else
+              imgSrc2_cut.Canvas.Pixels[x,y] := RGB(255,255,255);
+         end;
+       end;
+    end;
 end.
