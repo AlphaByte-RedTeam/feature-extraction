@@ -30,14 +30,12 @@ object Form1: TForm1
     Height = 106
     Top = 88
     Width = 106
-    AutoSize = True
   end
   object imgSrc2: TImage
     Left = 400
     Height = 106
     Top = 88
     Width = 104
-    AutoSize = True
   end
   object ListBox1: TListBox
     Left = 96
@@ -61,6 +59,7 @@ object Form1: TForm1
     Top = 216
     Width = 96
     Caption = 'Ekstraksi Fitur'
+    OnClick = btnEktraksiClick
     TabOrder = 4
   end
   object btnScan1: TButton

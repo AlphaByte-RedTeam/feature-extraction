@@ -26,6 +26,7 @@ type
     ListBox2: TListBox;
     OpenPictureDialog1: TOpenPictureDialog;
     OpenPictureDialog2: TOpenPictureDialog;
+    procedure btnEktraksiClick(Sender: TObject);
     procedure btnLoad1Click(Sender: TObject);
     procedure btnLoad2Click(Sender: TObject);
     procedure btnScan1Click(Sender: TObject);
@@ -45,272 +46,287 @@ implementation
 
 { TForm1 }
 uses
-  windows;
+  Windows;
 
 var
-   bitmapR1, bitmapG1, bitmapB1, BitmapGray1, BitmapBiner1 : array[0..1000, 0..1000] of integer;
-   bitmapR2, bitmapG2, bitmapB2, BitmapGray2, BitmapBiner2 : array[0..1000, 0..1000] of integer;
+  bitmapR1, bitmapG1, bitmapB1, BitmapGray1, BitmapBiner1: array[0..1000, 0..1000] of
+  integer;
+  bitmapR2, bitmapG2, bitmapB2, BitmapGray2, BitmapBiner2: array[0..1000, 0..1000] of
+  integer;
 
-   BitmapBiner1_cut : array[0..1000, 0..1000] of integer;
-   BitmapBiner2_cut : array[0..1000, 0..1000] of integer;
+  BitmapBiner1_cut: array[0..1000, 0..1000] of integer;
+  BitmapBiner2_cut: array[0..1000, 0..1000] of integer;
 
 procedure TForm1.btnLoad1Click(Sender: TObject);
 var
-  i, j, R, G, B, gray : integer;
+  i, j, R, G, B, gray: integer;
 begin
   if (OpenPictureDialog1.Execute) then
   begin
     imgSrc1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
   end;
-  for j:=0 to imgSrc1.Height-1 do
+  for j := 0 to imgSrc1.Height - 1 do
   begin
-    for i:=0 to imgSrc1.Width-1 do
+    for i := 0 to imgSrc1.Width - 1 do
     begin
       //mengambil nilai RGB
-      R := GetRValue(imgSrc1.Canvas.Pixels[i,j]);
-      G := GetGValue(imgSrc1.Canvas.Pixels[i,j]);
-      B := GetBValue(imgSrc1.Canvas.Pixels[i,j]);
+      R := GetRValue(imgSrc1.Canvas.Pixels[i, j]);
+      G := GetGValue(imgSrc1.Canvas.Pixels[i, j]);
+      B := GetBValue(imgSrc1.Canvas.Pixels[i, j]);
       gray := (R + G + B) div 3;
-      bitmapR1[i,j] := R;
-      bitmapG1[i,j] := G;
-      bitmapB1[i,j] := B;
-      bitmapGray1[i,j] := gray;
-      if gray>127 then
-        BitmapBiner1[i,j] := 1
+      bitmapR1[i, j] := R;
+      bitmapG1[i, j] := G;
+      bitmapB1[i, j] := B;
+      bitmapGray1[i, j] := gray;
+      if gray > 127 then
+        BitmapBiner1[i, j] := 1
       else
-        BitmapBiner1[i,j] := 0;
+        BitmapBiner1[i, j] := 0;
     end;
   end;
 end;
 
+procedure TForm1.btnEktraksiClick(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.btnLoad2Click(Sender: TObject);
 var
-  i, j, R, G, B, gray : integer;
+  i, j, R, G, B, gray: integer;
 begin
   if (OpenPictureDialog2.Execute) then
   begin
     imgSrc2.Picture.LoadFromFile(OpenPictureDialog2.FileName);
   end;
-  for j:=0 to imgSrc2.Height-1 do
+  for j := 0 to imgSrc2.Height - 1 do
   begin
-    for i:=0 to imgSrc2.Width-1 do
+    for i := 0 to imgSrc2.Width - 1 do
     begin
       //mengambil nilai RGB
-      R := GetRValue(imgSrc2.Canvas.Pixels[i,j]);
-      G := GetGValue(imgSrc2.Canvas.Pixels[i,j]);
-      B := GetBValue(imgSrc2.Canvas.Pixels[i,j]);
+      R := GetRValue(imgSrc2.Canvas.Pixels[i, j]);
+      G := GetGValue(imgSrc2.Canvas.Pixels[i, j]);
+      B := GetBValue(imgSrc2.Canvas.Pixels[i, j]);
       gray := (R + G + B) div 3;
-      bitmapR2[i,j] := R;
-      bitmapG2[i,j] := G;
-      bitmapB2[i,j] := B;
-      bitmapGray2[i,j] := gray;
-      if gray>127 then
-        BitmapBiner2[i,j] := 1
+      bitmapR2[i, j] := R;
+      bitmapG2[i, j] := G;
+      bitmapB2[i, j] := B;
+      bitmapGray2[i, j] := gray;
+      if gray > 127 then
+        BitmapBiner2[i, j] := 1
       else
-        BitmapBiner2[i,j] := 0;
+        BitmapBiner2[i, j] := 0;
     end;
   end;
 end;
 
 procedure TForm1.btnScan1Click(Sender: TObject);
 var
-  x, y : integer;
-  i, j : integer;
-  tepi_atas_y : integer;
-  tepi_bawah_y : integer;
+  x, y: integer;
+  i, j: integer;
+  tepi_atas_y: integer;
+  tepi_bawah_y: integer;
   tepi_kiri_x: integer;
-  tepi_kanan_x : integer;
+  tepi_kanan_x: integer;
 
 begin
-// tepi atas
-  for y := 0 to imgSrc1.Height-1 do
+  // mengambil nilai tepi atas
+  for y := 0 to imgSrc1.Height - 1 do
   begin
-    for x := 0 to imgSrc1.Width-1 do
+    for x := 0 to imgSrc1.Width - 1 do
     begin
-      if(BitmapBiner1[x,y] = 0) then
+      if (BitmapBiner1[x, y] = 0) then
       begin
         tepi_atas_y := y;
         break;
       end;
     end;
-     if(BitmapBiner1[x,y] = 0) then
-     begin
-       break;
-     end;
+    if (BitmapBiner1[x, y] = 0) then
+    begin
+      break;
+    end;
   end;
 
-// tepi bawah
-    for y := imgSrc1.Height-1 downto 0  do
+  // mengambil nilai tepi bawah
+  for y := imgSrc1.Height - 1 downto 0 do
+  begin
+    for x := 0 to imgSrc1.Width - 1 do
     begin
-      for x := 0 to imgSrc1.Width-1 do
+      if (BitmapBiner1[x, y] = 0) then
       begin
-        if(BitmapBiner1[x,y] = 0) then
-        begin
-          tepi_bawah_y := y;
-          break;
-        end;
-      end;
-      if(BitmapBiner1[x,y] = 0) then
-      begin
+        tepi_bawah_y := y;
         break;
       end;
     end;
+    if (BitmapBiner1[x, y] = 0) then
+    begin
+      break;
+    end;
+  end;
 
-// tepi kiri
-    for x := 0 to imgSrc1.Width-1  do
-        begin
-          for y := 0 to imgSrc1.Height-1 do
-          begin
-            if(BitmapBiner1[x,y] = 0) then
-            begin
-              tepi_kiri_x := x;
-              break;
-            end;
-          end;
-          if(BitmapBiner1[x,y] = 0) then
-          begin
-            break;
-          end;
-        end;
+  // mengambil nilai tepi kiri
+  for x := 0 to imgSrc1.Width - 1 do
+  begin
+    for y := 0 to imgSrc1.Height - 1 do
+    begin
+      if (BitmapBiner1[x, y] = 0) then
+      begin
+        tepi_kiri_x := x;
+        break;
+      end;
+    end;
+    if (BitmapBiner1[x, y] = 0) then
+    begin
+      break;
+    end;
+  end;
 
-// tepi kanan
-       for x := imgSrc1.Width-1 downto 0 do
-        begin
-          for y := 0 to imgSrc1.Height-1 do
-          begin
-            if(BitmapBiner1[x,y] = 0) then
-            begin
-              tepi_kanan_x := x;
-              break;
-            end;
-          end;
-          if(BitmapBiner1[x,y] = 0) then
-          begin
-            break;
-          end;
-        end;
+  // mengambil nilai tepi kanan
+  for x := imgSrc1.Width - 1 downto 0 do
+  begin
+    for y := 0 to imgSrc1.Height - 1 do
+    begin
+      if (BitmapBiner1[x, y] = 0) then
+      begin
+        tepi_kanan_x := x;
+        break;
+      end;
+    end;
+    if (BitmapBiner1[x, y] = 0) then
+    begin
+      break;
+    end;
+  end;
 
-       for j := tepi_atas_y to  tepi_bawah_y do
-       begin
-         for i := tepi_kiri_x to tepi_kanan_x do
-         begin
-           BitmapBiner1_cut[i-tepi_kiri_x, j-tepi_atas_y] := BitmapBiner1[i,j];
-         end;
-       end;
+  // mengambil nilai bitmap daerah yang dipotong
+  for j := tepi_atas_y to tepi_bawah_y do
+  begin
+    for i := tepi_kiri_x to tepi_kanan_x do
+    begin
+      BitmapBiner1_cut[i - tepi_kiri_x, j - tepi_atas_y] := BitmapBiner1[i, j];
+    end;
+  end;
 
-       imgSrc1_cut.Width  := tepi_kanan_x - tepi_kiri_x;
-       imgSrc1_cut.Height := tepi_bawah_y - tepi_atas_y;
+  // mengatur tinggi dan lebar gambar setelah dipotong
+  imgSrc1_cut.Width := tepi_kanan_x - tepi_kiri_x;
+  imgSrc1_cut.Height := tepi_bawah_y - tepi_atas_y;
 
-       for y := 0 to (tepi_bawah_y - tepi_atas_y) do
-       begin
-         for x := 0 to  (tepi_kanan_x - tepi_kiri_x) do
-         begin
-           if(BitmapBiner1_cut[x,y] = 0) then
-              imgSrc1_cut.Canvas.Pixels[x,y] := RGB(0,0,0)
-           else
-              imgSrc1_cut.Canvas.Pixels[x,y] := RGB(255,255,255);
-         end;
-       end;
+  //menampilkan pixel ke gambar setelah dipotong
+  for y := 0 to imgSrc1_cut.Height do
+  begin
+    for x := 0 to imgSrc1_cut.Width do
+    begin
+      if (BitmapBiner1_cut[x, y] = 0) then
+        imgSrc1_cut.Canvas.Pixels[x, y] := RGB(0, 0, 0)
+      else
+        imgSrc1_cut.Canvas.Pixels[x, y] := RGB(255, 255, 255);
+    end;
+  end;
 end;
 
 procedure TForm1.btnScan2Click(Sender: TObject);
 var
-  x, y : integer;
-  i, j : integer;
-  tepi_atas_y : integer;
-  tepi_bawah_y : integer;
+  x, y: integer;
+  i, j: integer;
+  tepi_atas_y: integer;
+  tepi_bawah_y: integer;
   tepi_kiri_x: integer;
-  tepi_kanan_x : integer;
+  tepi_kanan_x: integer;
 
 begin
-// tepi atas
-  for y := 0 to imgSrc2.Height-1 do
+
+  // mengambil nilai tepi atas
+  for y := 0 to imgSrc2.Height - 1 do
   begin
-    for x := 0 to imgSrc2.Width-1 do
+    for x := 0 to imgSrc2.Width - 1 do
     begin
-      if(BitmapBiner2[x,y] = 0) then
+      if (BitmapBiner2[x, y] = 0) then
       begin
         tepi_atas_y := y;
         break;
       end;
     end;
-     if(BitmapBiner2[x,y] = 0) then
-     begin
-       break;
-     end;
+    if (BitmapBiner2[x, y] = 0) then
+    begin
+      break;
+    end;
   end;
 
-// tepi bawah
-    for y := imgSrc2.Height-1 downto 0  do
+  // mengambil nilai tepi bawah
+  for y := imgSrc2.Height - 1 downto 0 do
+  begin
+    for x := 0 to imgSrc2.Width - 1 do
     begin
-      for x := 0 to imgSrc2.Width-1 do
+      if (BitmapBiner2[x, y] = 0) then
       begin
-        if(BitmapBiner2[x,y] = 0) then
-        begin
-          tepi_bawah_y := y;
-          break;
-        end;
-      end;
-      if(BitmapBiner2[x,y] = 0) then
-      begin
+        tepi_bawah_y := y;
         break;
       end;
     end;
-
-// tepi kiri
-    for x := 0 to imgSrc2.Width-1  do
-        begin
-          for y := 0 to imgSrc2.Height-1 do
-          begin
-            if(BitmapBiner2[x,y] = 0) then
-            begin
-              tepi_kiri_x := x;
-              break;
-            end;
-          end;
-          if(BitmapBiner2[x,y] = 0) then
-          begin
-            break;
-          end;
-        end;
-
-// tepi kanan
-       for x := imgSrc2.Width-1 downto 0 do
-        begin
-          for y := 0 to imgSrc2.Height-1 do
-          begin
-            if(BitmapBiner2[x,y] = 0) then
-            begin
-              tepi_kanan_x := x;
-              break;
-            end;
-          end;
-          if(BitmapBiner2[x,y] = 0) then
-          begin
-            break;
-          end;
-        end;
-
-       for j := tepi_atas_y to  tepi_bawah_y do
-       begin
-         for i := tepi_kiri_x to tepi_kanan_x do
-         begin
-           BitmapBiner2_cut[i-tepi_kiri_x, j-tepi_atas_y] := BitmapBiner2[i,j];
-         end;
-       end;
-
-       imgSrc2_cut.Width  := tepi_kanan_x - tepi_kiri_x;
-       imgSrc2_cut.Height := tepi_bawah_y - tepi_atas_y;
-
-       for y := 0 to (tepi_bawah_y - tepi_atas_y) do
-       begin
-         for x := 0 to  (tepi_kanan_x - tepi_kiri_x) do
-         begin
-           if(BitmapBiner2_cut[x,y] = 0) then
-              imgSrc2_cut.Canvas.Pixels[x,y] := RGB(0,0,0)
-           else
-              imgSrc2_cut.Canvas.Pixels[x,y] := RGB(255,255,255);
-         end;
-       end;
+    if (BitmapBiner2[x, y] = 0) then
+    begin
+      break;
     end;
+  end;
+
+  // mengambil nilai tepi kiri
+  for x := 0 to imgSrc2.Width - 1 do
+  begin
+    for y := 0 to imgSrc2.Height - 1 do
+    begin
+      if (BitmapBiner2[x, y] = 0) then
+      begin
+        tepi_kiri_x := x;
+        break;
+      end;
+    end;
+    if (BitmapBiner2[x, y] = 0) then
+    begin
+      break;
+    end;
+  end;
+
+  // mengambil nilai tepi kanan
+  for x := imgSrc2.Width - 1 downto 0 do
+  begin
+    for y := 0 to imgSrc2.Height - 1 do
+    begin
+      if (BitmapBiner2[x, y] = 0) then
+      begin
+        tepi_kanan_x := x;
+        break;
+      end;
+    end;
+    if (BitmapBiner2[x, y] = 0) then
+    begin
+      break;
+    end;
+  end;
+
+  // mengambil nilai bitmap daerah yang dipotong
+  for j := tepi_atas_y to tepi_bawah_y do
+  begin
+    for i := tepi_kiri_x to tepi_kanan_x do
+    begin
+      BitmapBiner2_cut[i - tepi_kiri_x, j - tepi_atas_y] := BitmapBiner2[i, j];
+    end;
+  end;
+
+  // mengatur tinggi dan lebar gambar setelah dipotong
+  imgSrc2_cut.Width := tepi_kanan_x - tepi_kiri_x;
+  imgSrc2_cut.Height := tepi_bawah_y - tepi_atas_y;
+
+  //menampilkan pixel ke gambar setelah dipotong
+  for y := 0 to imgSrc2_cut.Height do
+  begin
+    for x := 0 to imgSrc2_cut.Width do
+    begin
+      if (BitmapBiner2_cut[x, y] = 0) then
+        imgSrc2_cut.Canvas.Pixels[x, y] := RGB(0, 0, 0)
+      else
+        imgSrc2_cut.Canvas.Pixels[x, y] := RGB(255, 255, 255);
+    end;
+  end;
+end;
+
 end.
