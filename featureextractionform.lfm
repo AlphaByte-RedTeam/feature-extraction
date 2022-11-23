@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = 115
-  Height = 577
-  Top = 48
+  Left = 375
+  Height = 558
+  Top = 93
   Width = 841
   Caption = 'Form1'
-  ClientHeight = 577
+  ClientHeight = 558
   ClientWidth = 841
   LCLVersion = '2.2.0.1'
   object btnLoad1: TButton
@@ -107,6 +107,14 @@ object Form1: TForm1
     Top = 416
     Width = 76
     Caption = 'Distribusi Fitur'
+  end
+  object btnKemiripan: TButton
+    Left = 664
+    Height = 25
+    Top = 250
+    Width = 96
+    Caption = 'Kemiripan'
+    TabOrder = 7
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 26

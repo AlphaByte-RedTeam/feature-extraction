@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="90"/>
-        <CursorPos X="29" Y="110"/>
+        <TopLine Value="79"/>
+        <CursorPos X="29" Y="111"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -35,7 +35,7 @@
         <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="27">
       <Position>
         <Filename Value="featureextractionform.pas"/>
         <Caret Line="23" Column="11" TopLine="7"/>
@@ -98,14 +98,6 @@
       </Position>
       <Position>
         <Filename Value="featureextractionform.pas"/>
-        <Caret Line="201" Column="50" TopLine="302"/>
-      </Position>
-      <Position>
-        <Filename Value="featureextractionform.pas"/>
-        <Caret Line="116" Column="40" TopLine="343"/>
-      </Position>
-      <Position>
-        <Filename Value="featureextractionform.pas"/>
         <Caret Line="139" Column="104" TopLine="113"/>
       </Position>
       <Position>
@@ -154,7 +146,7 @@
       </Position>
       <Position>
         <Filename Value="featureextractionform.pas"/>
-        <Caret Line="113" Column="81" TopLine="129"/>
+        <Caret Line="110" Column="29" TopLine="58"/>
       </Position>
     </JumpHistory>
     <RunParams>

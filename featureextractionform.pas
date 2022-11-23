@@ -18,6 +18,7 @@ type
     btnEktraksi: TButton;
     btnScan1: TButton;
     btnScan2: TButton;
+    btnKemiripan: TButton;
     imgSrc1_cut: TImage;
     imgSrc2_cut: TImage;
     imgSrc2: TImage;
