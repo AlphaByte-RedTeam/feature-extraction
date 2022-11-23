@@ -1,16 +1,16 @@
 object Form1: TForm1
-  Left = 435
-  Height = 577
-  Top = 169
+  Left = 441
+  Height = 556
+  Top = 63
   Width = 841
   Caption = 'Form1'
-  ClientHeight = 577
+  ClientHeight = 556
   ClientWidth = 841
   LCLVersion = '2.2.0.1'
   object btnLoad1: TButton
-    Left = 104
+    Left = 112
     Height = 25
-    Top = 40
+    Top = 8
     Width = 75
     Caption = 'Load 1'
     OnClick = btnLoad1Click
@@ -19,7 +19,7 @@ object Form1: TForm1
   object btnLoad2: TButton
     Left = 412
     Height = 25
-    Top = 40
+    Top = 8
     Width = 75
     Caption = 'Load 2'
     OnClick = btnLoad2Click
@@ -30,27 +30,25 @@ object Form1: TForm1
     Height = 106
     Top = 88
     Width = 106
-    AutoSize = True
   end
   object imgSrc2: TImage
     Left = 400
     Height = 106
     Top = 88
     Width = 104
-    AutoSize = True
   end
   object ListBox1: TListBox
     Left = 96
-    Height = 80
-    Top = 264
-    Width = 100
+    Height = 128
+    Top = 440
+    Width = 105
     ItemHeight = 0
     TabOrder = 2
   end
   object ListBox2: TListBox
-    Left = 404
-    Height = 80
-    Top = 264
+    Left = 408
+    Height = 128
+    Top = 440
     Width = 100
     ItemHeight = 0
     TabOrder = 3
@@ -61,7 +59,77 @@ object Form1: TForm1
     Top = 216
     Width = 96
     Caption = 'Ekstraksi Fitur'
+    OnClick = btnEktraksiClick
     TabOrder = 4
+  end
+  object btnScan1: TButton
+    Left = 112
+    Height = 25
+    Top = 47
+    Width = 75
+    Caption = 'Scan Line'
+    OnClick = btnScan1Click
+    TabOrder = 5
+  end
+  object btnScan2: TButton
+    Left = 412
+    Height = 25
+    Top = 47
+    Width = 75
+    Caption = 'Scan Line'
+    OnClick = btnScan2Click
+    TabOrder = 6
+  end
+  object imgSrc1_cut: TImage
+    Left = 104
+    Height = 90
+    Top = 280
+    Width = 90
+    AutoSize = True
+  end
+  object imgSrc2_cut: TImage
+    Left = 412
+    Height = 90
+    Top = 280
+    Width = 90
+    AutoSize = True
+  end
+  object Label1: TLabel
+    Left = 111
+    Height = 15
+    Top = 416
+    Width = 76
+    Caption = 'Distribusi Fitur'
+  end
+  object Label2: TLabel
+    Left = 416
+    Height = 15
+    Top = 416
+    Width = 76
+    Caption = 'Distribusi Fitur'
+  end
+  object btnKemiripan: TButton
+    Left = 664
+    Height = 25
+    Top = 250
+    Width = 96
+    Caption = 'Kemiripan'
+    OnClick = btnKemiripanClick
+    TabOrder = 7
+  end
+  object LabelKemiripan: TLabel
+    Left = 232
+    Height = 15
+    Top = 464
+    Width = 160
+    Caption = 'Apakah Kedua Gambar Mirip ?'
+  end
+  object LabelSkor: TLabel
+    Left = 216
+    Height = 15
+    Top = 441
+    Width = 86
+    Caption = 'Skor Kemiripan :'
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 26
