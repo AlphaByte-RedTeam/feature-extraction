@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = 375
-  Height = 558
-  Top = 93
+  Left = 441
+  Height = 556
+  Top = 63
   Width = 841
   Caption = 'Form1'
-  ClientHeight = 558
+  ClientHeight = 556
   ClientWidth = 841
   LCLVersion = '2.2.0.1'
   object btnLoad1: TButton
@@ -114,7 +114,22 @@ object Form1: TForm1
     Top = 250
     Width = 96
     Caption = 'Kemiripan'
+    OnClick = btnKemiripanClick
     TabOrder = 7
+  end
+  object LabelKemiripan: TLabel
+    Left = 232
+    Height = 15
+    Top = 464
+    Width = 160
+    Caption = 'Apakah Kedua Gambar Mirip ?'
+  end
+  object LabelSkor: TLabel
+    Left = 216
+    Height = 15
+    Top = 441
+    Width = 86
+    Caption = 'Skor Kemiripan :'
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 26

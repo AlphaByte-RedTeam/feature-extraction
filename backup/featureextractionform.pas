@@ -18,17 +18,21 @@ type
     btnEktraksi: TButton;
     btnScan1: TButton;
     btnScan2: TButton;
+    btnKemiripan: TButton;
     imgSrc1_cut: TImage;
     imgSrc2_cut: TImage;
     imgSrc2: TImage;
     imgSrc1: TImage;
     Label1: TLabel;
     Label2: TLabel;
+    LabelSkor: TLabel;
+    LabelKemiripan: TLabel;
     ListBox1: TListBox;
     ListBox2: TListBox;
     OpenPictureDialog1: TOpenPictureDialog;
     OpenPictureDialog2: TOpenPictureDialog;
     procedure btnEktraksiClick(Sender: TObject);
+    procedure btnKemiripanClick(Sender: TObject);
     procedure btnLoad1Click(Sender: TObject);
     procedure btnLoad2Click(Sender: TObject);
     procedure btnScan1Click(Sender: TObject);
@@ -61,6 +65,9 @@ var
 
   feature1 : array[1..5, 1..5] of integer;
   feature2 : array[1..5, 1..5] of integer;
+  feature1_distribution : array[1..5,1..5] of double;
+  feature2_distribution : array[1..5,1..5] of double;
+
 procedure TForm1.btnLoad1Click(Sender: TObject);
 var
   i, j, R, G, B, gray: integer;
@@ -107,7 +114,7 @@ var
   cell_width2, cell_height2 : integer;
   left_most_cell_2, right_most_cell_2 : integer;
   top_most_cell_2, bottom_most_cell_2 : integer;
-  total_cells_in_2_feature1 : integer;
+  total_cells_in_1_feature2 : integer;
 
 begin
 // ***************************GAMBAR PERTAMA************************************
@@ -145,13 +152,21 @@ begin
     bottom_most_cell_1 += cell_height1;
   end;
 
-  feature_number1 += 1;
   total_cells_in_1_feature1 := (cell_width1 + 1) * (cell_height1 + 1);
   for y := 1 to 5 do
   begin
     for x := 1 to 5 do
     begin
-      ListBox1.Items.Add('Fitur ' + IntToStr(feature_number1) + ' : ' + IntToStr(round((feature1[x,y] /total_cells_in_1_feature1)*100)) + '%');
+      feature1_distribution[x,y] := (feature1[x,y] /total_cells_in_1_feature1);
+    end;
+  end;
+
+  feature_number1 += 1;
+  for y := 1 to 5 do
+  begin
+    for x := 1 to 5 do
+    begin
+      ListBox1.Items.Add('Fitur ' + IntToStr(feature_number1) + ' : ' + IntToStr(round(feature1_distribution[x,y]*100)) + '%');
       feature_number1 += 1;
     end;
   end;
@@ -193,16 +208,49 @@ begin
       bottom_most_cell_2 += cell_height2;
     end;
 
-    feature_number2 += 1;
     total_cells_in_1_feature2 := (cell_width2 + 1) * (cell_height2 + 1);
     for y := 1 to 5 do
     begin
       for x := 1 to 5 do
       begin
-        ListBox2.Items.Add('Fitur ' + IntToStr(feature_number2) + ' : ' + IntToStr(round((feature2[x,y] /total_cells_in_1_feature2)*100)) + '%');
+        feature2_distribution[x,y] := (feature2[x,y] /total_cells_in_1_feature2);
+      end;
+    end;
+
+    feature_number2 += 1;
+
+    for y := 1 to 5 do
+    begin
+      for x := 1 to 5 do
+      begin
+        ListBox2.Items.Add('Fitur ' + IntToStr(feature_number2) + ' : ' + IntToStr(round(feature2_distribution[x,y]*100)) + '%');
         feature_number2 += 1;
       end;
     end;
+end;
+
+procedure TForm1.btnKemiripanClick(Sender: TObject);
+var
+  x, y : integer;
+  feature_diff : double;
+
+begin
+  feature_diff := 0;
+
+  for y := 1 to 5 do
+  begin
+    for x := 1 to 5 do
+    begin
+      feature_diff := feature_diff + (abs((feature1_distribution[x,y] - feature2_distribution[x,y])));
+    end;
+  end;
+
+  LabelSkor.Caption := 'Skor Kemiripan : ' + FloatToStr(feature_diff);
+
+  if feature_diff <= 5 then
+    LabelKemiripan.Caption := 'KEDUA GAMBAR MIRIP'
+  else
+    LabelKemiripan.Caption  := 'Kedua GAMBAR TIDAK MIRIP';
 end;
 
 procedure TForm1.btnLoad2Click(Sender: TObject);
